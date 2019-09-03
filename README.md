@@ -1,5 +1,5 @@
 # object-tracker-robot
-A object tracker surface robot project. It uses 2 Arduinos (One is possible with some moficiations) and a single board computer (in this case it is Raspberry Pi with Ubuntu Mate + ROS Kinetic).
+An object tracker surface robot project. It uses 2 Arduinos (One is possible with some moficiations) and a single board computer (in this case it is Raspberry Pi with Ubuntu Mate + ROS Kinetic).
 
 The robot has only one motor in the front and it is controlled by a servo.
 >roslaunch \<name of your package> pakize.launch
