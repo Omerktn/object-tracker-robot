@@ -11,20 +11,16 @@ using namespace std;
 ros::Publisher dir_pub; // Publisher node of direction message
 
 float newData = 0;
-float oldData = 0;
-float rL=30,rH=350,oL=65,oH=145;
-
+float rL=30,rH=350,oL=65,oH=145;    // real Low, real High ; out Low, out High
 
 float mapRange(float val, float rL,float rH,float oL,float oH){
-    float outVal;
+    float outVal;   // basicly the same map() function in Arduino
     outVal = ((oH-oL)/(rH-rL))*(val - rL) + oL;
     return outVal;
 }
 
-
 void tracker_cb (const std_msgs::Float32MultiArray& obj_msg) {
     std_msgs::Float32 dir_val; // Direction value
-    
 
     if (obj_msg.data.size()) {
         newData = obj_msg.data[9];
@@ -36,8 +32,6 @@ void tracker_cb (const std_msgs::Float32MultiArray& obj_msg) {
         dir_val.data = newData;
         dir_pub.publish(dir_val); // Publish the message
     }
-
-    
 }
 
 int main(int argc, char **argv) { 
