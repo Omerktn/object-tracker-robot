@@ -7,9 +7,8 @@
 ros::NodeHandle nh_m;
 DualVNH5019MotorShield md;
 
-float vR; // -400 ile +400 arasinda degerler almali.
+float vR; // it should take value between -400 and +400
 const int MAX_VEL = 400;
-float hiz_katsayi = 1;
 bool keyActive = 0;
 unsigned long lastTime = 0;
 
@@ -22,7 +21,6 @@ void keydown_cb_m(const keyboard::Key& key_msg) {
     vR = 399;
     keyActive = 1;
   }
-  
 }
 
 void keyup_cb_m(const keyboard::Key& key_msg) {
@@ -40,8 +38,6 @@ void servDir_cb2 (const std_msgs::Float32& serv_msg) {
   vR = -399;
   lastTime = millis();
 }
-
-
 
 ros::Subscriber<keyboard::Key> keydown_sub_m ("keyboard/keydown", keydown_cb_m);
 ros::Subscriber<keyboard::Key> keyup_sub_m   ("keyboard/keyup", keyup_cb_m);
@@ -61,10 +57,9 @@ void loop() {
     vR = 0;
   }
   
-  if (fabs(vR) < 400) {
+  if (fabs(vR) < MAX_VEL) {
     md.setSpeeds(vR, vR); 
   }
   nh_m.spinOnce();
   delay(1);
-
 }
