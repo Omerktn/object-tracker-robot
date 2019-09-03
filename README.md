@@ -16,7 +16,7 @@ Dependencies:
 - uvc_camera
 - find_object_2d
 
-Youu need to have:
+You need to have:
 - Robot Operating System (Kinetic or Melodic) installed in your Single Board Computer
 - Arduino library for your own motor controller (in the project it is *DualVNH5019MotorShield.h*)
 
