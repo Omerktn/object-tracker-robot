@@ -1,0 +1,20 @@
+<launch>
+    <node pkg="uvc_camera" type="uvc_camera_node" name="my_uvc_camera" />
+
+    <node pkg="rosserial_python" type="serial_node.py" name="serUNO">
+        <param name="port" value="/dev/ttyUSB0" />
+    </node>
+
+    <node pkg="rosserial_python" type="serial_node.py" name="serMEGA">
+        <param name="port" value="/dev/ttyACM0" />
+    </node>
+
+    <node pkg="pakize" type="trackobj" name="object_tracker" />
+
+    <node pkg="find_object_2d" type="find_object_2d" name="find_objects" output="screen">
+        <remap from="image" to="image_raw"/>
+        <param name="gui" value="false" type="bool"/>
+        <param name="objects_path"  value="/home/pkz/obj" type="str"/>
+        <param name="settings_path" value="/home/pkz/obj/myset.ini" type="str"/>
+    </node>
+</launch>
