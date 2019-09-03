@@ -14,9 +14,8 @@ float newData = 0;
 float rL=30,rH=350,oL=65,oH=145;    // real Low, real High ; out Low, out High
 
 float mapRange(float val, float rL,float rH,float oL,float oH){
-    float outVal;   // basicly the same map() function in Arduino
-    outVal = ((oH-oL)/(rH-rL))*(val - rL) + oL;
-    return outVal;
+    // basicly the same map() function in Arduino
+    return (float)(((oH-oL)/(rH-rL))*(val - rL) + oL);
 }
 
 void tracker_cb (const std_msgs::Float32MultiArray& obj_msg) {
