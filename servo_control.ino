@@ -7,7 +7,8 @@
 Servo myservo;
 ros::NodeHandle nh;
 
-int pos = 105;    // variable to store the servo position
+int pos = 105;        // variable to store the servo position
+int forwardPos = 105  // position when wheel is looking forward
 bool keyR = 0;
 bool keyL = 0;
 unsigned long lastTime = 0;
@@ -19,18 +20,17 @@ void keydown_cb(const keyboard::Key& key_msg) {
   else if(key_msg.code == 97) { // Left
     keyL = 1;
   }
-  
 }
 
 void keyup_cb(const keyboard::Key& key_msg) {
   
   if(key_msg.code == 100) { // Right
     keyR = 0;
-    pos = 105;
+    pos = forwardPos;
   }
   else if(key_msg.code == 97) { // Left
     keyL = 0;
-    pos = 105;
+    pos = forwardPos;
   }
 }
 
@@ -54,7 +54,7 @@ void setup() {
 
 void loop() {
   if (millis() - lastTime > 1000) {
-    pos = 105;
+    pos = forwardPos;  // if there is no action for 1 sec, go to forward position
   }
   
   while ((keyR && pos < 160)) { // Right
